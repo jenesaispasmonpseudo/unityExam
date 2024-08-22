@@ -9,6 +9,7 @@ namespace UnityChan
 
 	public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 	{
+		private int score = 0;
 
 		public float animSpeed = 1.5f;	
 		public float lookSmoother = 3.0f;			
@@ -33,6 +34,24 @@ namespace UnityChan
 		static int idleState = Animator.StringToHash("Base Layer.Idle");
 		static int locoState = Animator.StringToHash("Base Layer.Locomotion");
 		static int restState = Animator.StringToHash("Base Layer.Rest");
+
+		void OnTriggerEnter(Collider other)
+		{
+			Debug.Log("Collision détectée avec : " + other.gameObject.name);
+			
+			// Vérifier si l'objet entrant a le tag "food"
+			if (other.CompareTag("food"))
+			{
+				// Détruire l'objet qui a le tag "food"
+				Destroy(other.gameObject);
+
+				// Incrémenter le score
+				score += 1;
+
+				// Afficher le score dans la console
+				Debug.Log("Score : " + score);
+			}
+		}
 
 		void Start()
 		{
