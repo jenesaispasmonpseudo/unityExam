@@ -8,6 +8,7 @@ public class UImanager : MonoBehaviour
 {
     public GameObject panel; 
     public GameObject panelPause; 
+    public GameObject panelWin; 
     public Button pause;
     public Button continuer;
     public TextMeshProUGUI scoreText;
@@ -17,6 +18,10 @@ public class UImanager : MonoBehaviour
         if (panel != null)
         {
             panel.SetActive(false); 
+        }
+        if (panelWin != null)
+        {
+            panelWin.SetActive(false); 
         }
         if (panelPause != null)
         {

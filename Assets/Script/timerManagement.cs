@@ -32,6 +32,7 @@ public class TimerManagement : MonoBehaviour
             currentTime = 0;
             Debug.Log("Le timer est terminé!");
             UpdateTimerUI();
+            Time.timeScale = 0f;
         }
     }
 

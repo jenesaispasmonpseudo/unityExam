@@ -9,6 +9,10 @@ namespace UnityChan
 
 	public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 	{
+
+		public AudioClip[] soundClips;
+    	public AudioSource audioSource; 
+		private FoodSpawner foodSpawner;
 		private int score = 0;
 
 		public float animSpeed = 1.5f;	
@@ -35,26 +39,55 @@ namespace UnityChan
 		static int locoState = Animator.StringToHash("Base Layer.Locomotion");
 		static int restState = Animator.StringToHash("Base Layer.Rest");
 
+		 void PlayRandomSound()
+		{
+			if (soundClips.Length > 0 && audioSource != null)
+			{
+				// Choisir un clip audio aléatoire
+				int randomIndex = Random.Range(0, soundClips.Length);
+				AudioClip randomClip = soundClips[randomIndex];
+
+				// Jouer le clip audio
+				audioSource.clip = randomClip;
+				audioSource.Play();
+			}
+			else
+			{
+				Debug.LogWarning("Aucun clip audio ou AudioSource assigné.");
+			}
+		}
 		void OnTriggerEnter(Collider other)
 		{
 			Debug.Log("Collision détectée avec : " + other.gameObject.name);
-			
+
 			// Vérifier si l'objet entrant a le tag "food"
 			if (other.CompareTag("food"))
 			{
 				// Détruire l'objet qui a le tag "food"
 				Destroy(other.gameObject);
 
+				foodSpawner.FoodCollected();
+				
 				// Incrémenter le score
 				score += 1;
 
 				// Afficher le score dans la console
 				Debug.Log("Score : " + score);
+
+				// Jouer un son au hasard
+				PlayRandomSound();
 			}
 		}
 
 		void Start()
 		{
+			foodSpawner = FindObjectOfType<FoodSpawner>();
+
+			if (audioSource == null)
+			{
+				audioSource = GetComponent<AudioSource>();
+			}
+
 			anim = GetComponent<Animator>();
 			col = GetComponent<CapsuleCollider>();
 			rb = GetComponent<Rigidbody>();

@@ -7,9 +7,14 @@ public class FoodSpawner : MonoBehaviour
 
     public GameObject[] foodPrefabs; 
     public Transform[] spawnPoints;  
+    public GameObject panel; 
+    private int totalFoodCount;
+    private int collectedFoodCount = 0;
 
     void Start()
     {
+        totalFoodCount = 0;  
+
         if (foodPrefabs.Length > 0 && spawnPoints.Length > 0)
         {
             foreach (Transform spawnPoint in spawnPoints)
@@ -39,6 +44,8 @@ public class FoodSpawner : MonoBehaviour
         // Assigner le tag "food" à la nourriture
         spawnedFood.tag = "food";
 
+        totalFoodCount++;
+
         // Configurer le collider comme un trigger
         Collider collider = spawnedFood.GetComponent<Collider>();
         if (collider != null)
@@ -58,6 +65,25 @@ public class FoodSpawner : MonoBehaviour
         else
         {
             Debug.LogError("La nourriture n'a pas été spawnée correctement.");
+        }
+    }
+    // Fonction appelée lorsqu'une nourriture est collectée
+    public void FoodCollected()
+    {
+        collectedFoodCount++;
+        CheckForWin();  // Vérifie si toutes les nourritures ont été collectées
+    }
+
+    // Vérifie si le joueur a gagné
+    private void CheckForWin()
+    {
+        if (collectedFoodCount >= totalFoodCount)
+        {
+            // Affiche le message de victoire
+            Debug.Log("Vous avez gagné !");
+            // Affichez le panel de victoire ici, si nécessaire
+            panel.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
