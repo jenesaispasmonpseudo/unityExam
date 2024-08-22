@@ -362,6 +362,7 @@ GameObject:
   - component: {fileID: 729369519}
   - component: {fileID: 729369518}
   - component: {fileID: 729369517}
+  - component: {fileID: 729369520}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -471,6 +472,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729369515}
   m_CullTransparentMesh: 1
+--- !u!114 &729369520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729369515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35c4bcc3b99d2048b74c2a91336e2b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creditsButton: {fileID: 729369517}
+  playButton: {fileID: 890459846}
+  leftButton: {fileID: 2102423224}
 --- !u!1 &890459844
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +499,7 @@ GameObject:
   - component: {fileID: 890459848}
   - component: {fileID: 890459847}
   - component: {fileID: 890459846}
+  - component: {fileID: 890459849}
   m_Layer: 5
   m_Name: Jouer
   m_TagString: Untagged
@@ -592,6 +609,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890459844}
   m_CullTransparentMesh: 1
+--- !u!114 &890459849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890459844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35c4bcc3b99d2048b74c2a91336e2b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creditsButton: {fileID: 729369517}
+  playButton: {fileID: 890459846}
+  leftButton: {fileID: 2102423224}
 --- !u!1 &916836763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,6 +1215,7 @@ GameObject:
   - component: {fileID: 2102423226}
   - component: {fileID: 2102423225}
   - component: {fileID: 2102423224}
+  - component: {fileID: 2102423227}
   m_Layer: 5
   m_Name: Quitter
   m_TagString: Untagged
@@ -1292,6 +1325,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102423222}
   m_CullTransparentMesh: 1
+--- !u!114 &2102423227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102423222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35c4bcc3b99d2048b74c2a91336e2b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creditsButton: {fileID: 729369517}
+  playButton: {fileID: 890459846}
+  leftButton: {fileID: 2102423224}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
