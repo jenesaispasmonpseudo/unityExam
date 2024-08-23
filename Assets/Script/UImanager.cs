@@ -19,6 +19,7 @@ public class UImanager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
         if (panel != null)
         {
             panel.SetActive(false); 
@@ -43,7 +44,7 @@ public class UImanager : MonoBehaviour
         }
         if (retour_1 != null)
         {
-            retour_1.onClick.AddListener(retourGame);
+            retour_1.onClick.AddListener(reloadGame);
         }
         if (retour_2 != null)
         {
@@ -79,7 +80,7 @@ public class UImanager : MonoBehaviour
     }
     void retourGame(){
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("menu");
         
     }
     void PauseGame()
@@ -91,5 +92,9 @@ public class UImanager : MonoBehaviour
     void ContinueGame(){
         panelPause.SetActive(false);
         Time.timeScale = 1f;
+    }
+    void reloadGame(){
+        SceneManager.LoadScene("game");
+        
     }
 }
