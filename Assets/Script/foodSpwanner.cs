@@ -4,20 +4,36 @@ using UnityEngine;
 
 public class FoodSpawner : MonoBehaviour
 {
-
-    public GameObject[] foodPrefabs; 
-    public Transform[] spawnPoints;  
-    public GameObject panel; 
+    public GameObject[] foodPrefabs;
+    public Transform[] spawnPoints;
+    public GameObject panel;
     private int totalFoodCount;
     private int collectedFoodCount = 0;
+    public int numberOfSpawns = 5; // Nombre d'éléments à spawn
 
     void Start()
     {
-        totalFoodCount = 0;  
+        totalFoodCount = 0;
 
         if (foodPrefabs.Length > 0 && spawnPoints.Length > 0)
         {
-            foreach (Transform spawnPoint in spawnPoints)
+            // S'assurer qu'on ne spawn pas plus d'éléments que de points de spawn disponibles
+            numberOfSpawns = Mathf.Min(numberOfSpawns, spawnPoints.Length);
+
+            // Sélectionner aléatoirement 5 points de spawn sans répétition
+            List<Transform> selectedSpawnPoints = new List<Transform>();
+            while (selectedSpawnPoints.Count < numberOfSpawns)
+            {
+                int randomIndex = Random.Range(0, spawnPoints.Length);
+                Transform selectedPoint = spawnPoints[randomIndex];
+                if (!selectedSpawnPoints.Contains(selectedPoint))
+                {
+                    selectedSpawnPoints.Add(selectedPoint);
+                }
+            }
+
+            // Pour chaque point de spawn sélectionné, générer une nourriture
+            foreach (Transform spawnPoint in selectedSpawnPoints)
             {
                 SpawnFood(spawnPoint);
             }
@@ -27,7 +43,6 @@ public class FoodSpawner : MonoBehaviour
             Debug.LogError("Assurez-vous d'avoir assigné des foodPrefabs et des spawnPoints dans l'inspecteur.");
         }
     }
-    
 
     void SpawnFood(Transform spawnPoint)
     {
@@ -39,7 +54,7 @@ public class FoodSpawner : MonoBehaviour
         GameObject spawnedFood = Instantiate(foodToSpawn, spawnPoint.position, spawnPoint.rotation);
 
         // Mettre à l'échelle la nourriture spawnée à 3 sur tous les axes
-        spawnedFood.transform.localScale = new Vector3(3, 3, 3);
+        spawnedFood.transform.localScale = new Vector3(6,6, 6);
 
         // Assigner le tag "food" à la nourriture
         spawnedFood.tag = "food";
@@ -67,6 +82,7 @@ public class FoodSpawner : MonoBehaviour
             Debug.LogError("La nourriture n'a pas été spawnée correctement.");
         }
     }
+
     // Fonction appelée lorsqu'une nourriture est collectée
     public void FoodCollected()
     {
@@ -86,5 +102,4 @@ public class FoodSpawner : MonoBehaviour
             Time.timeScale = 0f;
         }
     }
-
 }
